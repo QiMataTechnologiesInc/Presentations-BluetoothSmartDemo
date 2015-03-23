@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ViewCell xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:QiMata.BluetoothSmartDemo.ViewModels.ListItems;assembly=QiMata.BluetoothSmartDemo"
+             xmlns:controls="clr-namespace:QiMata.BluetoothSmartDemo.Controls;assembly=QiMata.BluetoothSmartDemo"
+             x:Class="QiMata.BluetoothSmartDemo.Views.ListItems.ServiceListItem">
+  <ViewCell.View>
+    <StackLayout x:Name="ServiceStackLayout" Orientation="Vertical" VerticalOptions="FillAndExpand">
+      <Label Text="{Binding Name}" FontSize="20">
+        <Label.TextColor>
+          <OnPlatform x:TypeArguments="Color" Android="White" >
+          </OnPlatform>
+        </Label.TextColor>
+      </Label>
+      <controls:RepeaterView x:TypeArguments="viewModels:CharacteristicListItemViewModel" ItemsSource="{Binding Characteristics}" VerticalOptions="FillAndExpand" HeightRequest="120">
+        <controls:RepeaterView.ItemTemplate>
+        <DataTemplate>
+          <ViewCell>
+            <ViewCell.View>
+              <StackLayout VerticalOptions="FillAndExpand" Orientation="Vertical">
+                <Label Text="{Binding Name}"></Label>
+                <Button Text="Write"  Command="{Binding OpenWriteModalCommand}" VerticalOptions="FillAndExpand"></Button>
+                <Button Text="Read" Command="{Binding OpenReadPageCommand}" VerticalOptions="FillAndExpand" ></Button>
+              </StackLayout>
+            </ViewCell.View>
+          </ViewCell>
+        </DataTemplate>
+        </controls:RepeaterView.ItemTemplate>
+      </controls:RepeaterView>
+    </StackLayout>
+  </ViewCell.View>
+</ViewCell>

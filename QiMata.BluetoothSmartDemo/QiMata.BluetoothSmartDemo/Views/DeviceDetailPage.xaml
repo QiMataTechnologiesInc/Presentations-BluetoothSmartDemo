@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:listItems="clr-namespace:QiMata.BluetoothSmartDemo.Views.ListItems;assembly=QiMata.BluetoothSmartDemo"
+             x:Class="QiMata.BluetoothSmartDemo.Views.DeviceDetailPage"
+             Title="{Binding Title}">
+  <StackLayout>
+    <Label Text="{Binding Name}"></Label>
+    <!-- Services Section -->
+    <ScrollView>
+    <ListView ItemsSource="{Binding Path=Services}" HasUnevenRows="True" HeightRequest="2400" ItemSelected="ListView_OnItemSelected">
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <listItems:ServiceListItem Height="300"></listItems:ServiceListItem>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+     </ScrollView>
+  </StackLayout>
+</ContentPage>

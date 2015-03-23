@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:listItems="clr-namespace:QiMata.BluetoothSmartDemo.Views.ListItems;assembly=QiMata.BluetoothSmartDemo"
+             x:Class="QiMata.BluetoothSmartDemo.Views.MainPage"
+             Title="{Binding Path=Title}">
+  <ContentPage.Content>
+    <ScrollView>
+      <ScrollView.Content>
+        <StackLayout>
+          <StackLayout.Children>
+            <Button Text="Start Scan" Command="{Binding StartScanning}" IsEnabled="{Binding IsNotScanning}"></Button>
+            <Button Text="End Scan" Command="{Binding StopScanning}" IsEnabled="{Binding IsScanning}"></Button>
+            <ListView ItemsSource="{Binding Path=Devices}">
+              <ListView.ItemTemplate>
+                <DataTemplate>
+                  <listItems:BluetoothListItem></listItems:BluetoothListItem>
+                </DataTemplate>
+              </ListView.ItemTemplate> 
+            </ListView>
+          </StackLayout.Children>
+        </StackLayout>
+      </ScrollView.Content>
+    </ScrollView>
+  </ContentPage.Content>
+</ContentPage>

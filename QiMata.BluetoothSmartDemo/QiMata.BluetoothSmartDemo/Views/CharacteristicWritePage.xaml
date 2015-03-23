@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="QiMata.BluetoothSmartDemo.Views.CharacteristicWritePage">
+	<Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="*"/>
+      <ColumnDefinition Width="*"/>
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="50"/>
+      <RowDefinition Height="50"/>
+    </Grid.RowDefinitions>
+    <Entry Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Placeholder="Enter a Hexadecimal value to write"
+           Keyboard="Numeric" Text="{Binding WriteText}"></Entry>
+    <Button Grid.Row="1" Grid.Column="0" Command="{Binding GoBackCommand}" Text="Cancel"></Button>
+    <Button Grid.Row="1" Grid.Column="1" Command="{Binding SendCommand}" Text="Write"></Button>
+  </Grid>
+</ContentPage>
