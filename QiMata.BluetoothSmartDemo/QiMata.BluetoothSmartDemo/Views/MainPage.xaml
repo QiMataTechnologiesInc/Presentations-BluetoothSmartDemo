@@ -2,15 +2,27 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:listItems="clr-namespace:QiMata.BluetoothSmartDemo.Views.ListItems;assembly=QiMata.BluetoothSmartDemo"
+             xmlns:converters="clr-namespace:QiMata.BluetoothSmartDemo.Converters;assembly=QiMata.BluetoothSmartDemo"
              x:Class="QiMata.BluetoothSmartDemo.Views.MainPage"
              Title="{Binding Path=Title}">
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <Style x:Key="ButtonStyle" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="Green"/>
+        <Setter Property="BorderRadius" Value="0"/>
+        <Setter Property="HeightRequest" Value="42"/>
+      </Style>
+      
+      <converters:BooleanInverterConverter x:Key="BooleanInverterConverter"></converters:BooleanInverterConverter>
+    </ResourceDictionary>
+  </ContentPage.Resources>
   <ContentPage.Content>
     <ScrollView>
       <ScrollView.Content>
         <StackLayout>
           <StackLayout.Children>
-            <Button Text="Start Scan" Command="{Binding StartScanning}" IsEnabled="{Binding IsNotScanning}"></Button>
-            <Button Text="End Scan" Command="{Binding StopScanning}" IsEnabled="{Binding IsScanning}"></Button>
+            <Button Text="Start Scan" Style="{StaticResource ButtonStyle}" Command="{Binding StartScanning}" IsEnabled="{Binding IsScanning, Converter={StaticResource BooleanInverterConverter}}"></Button>
+            <Button Text="End Scan" Style="{StaticResource ButtonStyle}" Command="{Binding StopScanning}" IsEnabled="{Binding IsScanning}"></Button>
             <ListView ItemsSource="{Binding Path=Devices}">
               <ListView.ItemTemplate>
                 <DataTemplate>

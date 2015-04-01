@@ -1,7 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:behaviors="clr-namespace:QiMata.BluetoothSmartDemo.Behaviors;assembly=QiMata.BluetoothSmartDemo"
              x:Class="QiMata.BluetoothSmartDemo.Views.CharacteristicWritePage">
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <behaviors:IsBOrCBehavior x:Key="IsBOrCBehavior"></behaviors:IsBOrCBehavior>
+      <Style TargetType="Entry" x:Key="EntrySelectedStyle">
+        <Style.Triggers>
+          <Trigger TargetType="Entry"
+                   Property="IsFocused" Value="True">
+            <Setter Property="BackgroundColor" Value="Yellow" />
+          </Trigger>
+        </Style.Triggers>
+      </Style>
+    </ResourceDictionary>
+  </ContentPage.Resources>
 	<Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
     <Grid.ColumnDefinitions>
       <ColumnDefinition Width="*"/>
@@ -12,7 +26,11 @@
       <RowDefinition Height="50"/>
     </Grid.RowDefinitions>
     <Entry Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Placeholder="Enter a Hexadecimal value to write"
-           Keyboard="Numeric" Text="{Binding WriteText}"></Entry>
+           Keyboard="Numeric" Text="{Binding WriteText}" Style="{StaticResource EntrySelectedStyle}">
+      <Entry.Behaviors>
+        <behaviors:IsBOrCBehavior></behaviors:IsBOrCBehavior>
+      </Entry.Behaviors>
+    </Entry>
     <Button Grid.Row="1" Grid.Column="0" Command="{Binding GoBackCommand}" Text="Cancel"></Button>
     <Button Grid.Row="1" Grid.Column="1" Command="{Binding SendCommand}" Text="Write"></Button>
   </Grid>

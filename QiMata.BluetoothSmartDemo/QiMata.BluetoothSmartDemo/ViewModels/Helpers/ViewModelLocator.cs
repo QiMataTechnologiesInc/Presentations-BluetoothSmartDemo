@@ -13,7 +13,7 @@ namespace QiMata.BluetoothSmartDemo.ViewModels.Helpers
     {
         public static ViewModelLocator Current = new ViewModelLocator();
 
-        private IBluetoothSmartService _bluetoothSmartService = DependencyService.Get<IBluetoothSmartService>();
+        private IBluetoothSmartService _bluetoothSmartService = new MockBluetoothService();//DependencyService.Get<IBluetoothSmartService>();
         private MainPageViewModel _mainPageViewModel;
         private DeviceDetailViewModel _deviceDetailViewModel;
         private WriteModalViewModel _writeModalViewModel;
